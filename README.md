@@ -1,23 +1,26 @@
-# Bedrock UI Studio v8
+# Bedrock UI Studio v8.1 — Button Fix
 
 Mobile-friendly offline-first editor for planning Minecraft Bedrock UI projects.
 
 ## Files
-- `index.html` — structure and editor panels
-- `styles.css` — layout, theme, responsive styling
-- `app.js` — editor logic, project storage, texture generation and exports
+- `index.html` — page structure
+- `styles.css` — responsive styling
+- `app.js` — editor logic and project storage
+
+## Fixes in v8.1
+- Browser storage is guarded: when local storage is unavailable, it should no longer stop startup before the page buttons are wired up.
+- New-project and sample-project flows open the editor directly rather than requiring a reload.
+- Saved project cards open projects directly in the current page.
+- Project-tree file buttons now display their filenames.
+- Newly created text files use the same structure as other project files.
+- Export handles older projects with text files stored as plain strings.
+- Unhandled JavaScript errors are shown in the page instead of failing completely silently.
 
 ## Run locally
-Keep all three files in the same folder and open `index.html` in a modern browser. For reliable local file handling on Android, use Acode preview or a local static server.
-
-## Included in v8
-- Collapsible nested project tree; select folders as upload/create destinations
-- Create text files and folders, upload/preview PNG files, rename selected files and delete a selected folder with its contents
-- Dedicated chest-layout starter controls for title, columns, rows, slot size/gap and colors
-- Server Form Builder drafts JavaScript using ActionFormData, MessageFormData or ModalFormData
-- Optional editor-only UI tags on elements
-- Existing hover/pressed color generation and separate texture outputs
-- Auto-generated behavior/resource pack manifests and `.mcaddon` export
+Keep all three main files in one folder and open `index.html` in a modern browser, or use Acode preview. If you use GitHub Pages, upload/replace `index.html`, `styles.css`, and `app.js` in the same directory and refresh the site without cache.
 
 ## Important limits
-This is a client-side starter editor, not a full Bedrock JSON UI runtime. Generated chest layouts are visual design starters and do not automatically replace the vanilla chest screen. Validate control schemas, texture paths and manifests against the exact Bedrock version you target before using the exported add-on. Project contents stay in browser storage until you export them.
+This is an offline-first starter editor, not a full Bedrock JSON UI runtime. Generated chest layouts are visual starters and do not automatically replace the vanilla chest screen. Server Form Builder generates a JavaScript draft that still needs to be connected to a real event. Validate JSON UI controls, texture paths, manifests and Script API versions against the exact Bedrock version you target.
+
+## Testing note
+The JavaScript syntax check passes and static HTML ID references were audited. Automated browser interaction testing could not be completed in this environment, and the pack has not been tested in Minecraft in this pass. Treat this as a targeted fix build rather than a guarantee that every feature is bug-free.
